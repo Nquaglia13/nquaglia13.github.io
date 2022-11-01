@@ -1,0 +1,96 @@
+//////////////////////////////////////
+// BUTTONS GO HERE
+
+.btn-inline{
+    border: none;
+    color: var(--color-primary);
+    font-size: inherit; //more modular/reusable, we better set font size on the parents if we are gonna re use this comp
+    border-bottom: 1px solid currentColor;
+    display: inline-block;
+    background-color: transparent; //also for reusable reasons
+    cursor: pointer;
+    transition: all .2s;
+
+    & span{
+        margin-left: 2px;
+        transition: margin-left .2s;
+    }
+
+    &:hover{
+        color: var(--color-grey-dark-1);
+
+        span{
+            margin-left: 8px;
+        }
+    }
+
+    &:focus{
+        outline: none;
+        animation: pulsate 1s infinite;
+    }
+}
+
+.btn-show-all{
+    @media only screen and (max-width:$bp-small){
+        margin-top: 2rem;
+    }
+}
+
+
+//////////////////////////////////////
+// Roll over button
+
+.btn{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    border: none;
+    border-radius: 10rem;
+    position:relative;
+    overflow: hidden; // so the hover btn is not seen until it moves to the btn space
+    cursor: pointer;
+
+
+    background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+    color: #fff;
+    
+    & > * {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        transition: all .2s;
+    }
+
+    &__visible{ //button before any hovering, the original state
+        padding: 2rem 7.5rem;
+    }
+
+    &__invisible{ //when hovering this is the one we want rolling and siaplacing the first one
+        padding: 2rem 0; 
+        position:absolute;
+        left: 0;
+        top: -100%;
+    }
+
+
+//////////////////////////////////////
+// Animations
+
+    &:hover{
+        background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    }
+
+    &:hover &__visible{ //when the whole button is hovered, the visible part do this
+        transform: translateY(100%); //we move this one down like this because there is no position set.
+    }
+
+    &:hover &__invisible{
+        top: 0;
+    }
+
+    &:focus{
+        outline: none;
+        animation: pulsate 1s infinite;
+    }
+
+}

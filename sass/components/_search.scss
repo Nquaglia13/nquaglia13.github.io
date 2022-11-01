@@ -1,0 +1,60 @@
+//////////////////////////////////////
+// SEARCH BAR FOR HEADER
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 40%;
+
+    @media only screen and (max-width:$bp-smallest){
+        order: 1; //the default is 0, 1 is the lowest, so its the last element iside its container.
+        flex: 0 0 100%; // we want it to go down into another row, we make it bigger and still dont shrink.
+        background-color: var(--color-grey-light-2);
+    }
+
+    &__input{
+        font-family: inherit; //inputs dont inherit
+        font-size: inherit;
+        background-color: var(--color-grey-light-2);
+        border: none;
+        padding: .7rem 2rem;
+        color:inherit;
+        border-radius: 180rem;
+        width: 90%; //so it gets to full size when focused
+        transition: all .2s;
+        margin-right: -3.25rem; // so the search icon stays in the bar
+        
+        &:focus{
+            outline: none;
+            width: 100%;
+            background-color: var(--color-grey-light-3);
+        }
+
+        &::-webkit-input-placeholder{ //to format the placeholder typo 
+            font-weight: 100;
+            color: var(--color-grey-light-4);
+        }
+    }
+
+    &__input:focus + &__button{ //so we can also animate the icon bg when focused to match the already animated bar
+        background-color: var(--color-grey-light-3);
+    }
+    &__button{
+        border: none;
+        background-color: var(--color-grey-light-2);
+
+        &:focus{
+            outline: none;
+        }
+
+        &:active{
+            transform: translateY(2px);
+        }
+    }
+
+    &__icon{
+        height: 1.7rem;
+        width: 1.7rem;
+        fill: var(--color-grey-dark-3);
+    }
+}

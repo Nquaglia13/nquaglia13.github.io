@@ -1,0 +1,166 @@
+// FULL HOTEL VIEW COMPONENT (Gallety + Overview)
+
+
+//////////////////////////////////////
+// Gallery
+
+.gallery{
+    display: flex;
+    &__photo{
+        width: 100%;
+        display: block; // to avoid little extra space below when inline
+        cursor: pointer;
+
+        transform: scale(1.1);
+        transition: all .2s ease-out;
+    }
+
+    &__item{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden; // so the image does not break the container when scaled for animation
+        
+    }
+
+    &__item:hover &__caption{
+        bottom: 0;
+    }
+
+    &__item:hover &__photo{
+        transform: scale(1);
+    }
+
+    &__caption{
+        display: flex;
+        background-color: #eb2f64e0;
+        color: #fff;
+        position: absolute;
+        width: 100%;
+        height: 25%;
+        justify-content: center;
+        align-items: center;
+        bottom: -5rem;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        z-index: 1;
+        transition: all .2s ease-out;
+
+        @media only screen and (max-width:$bp-large){
+            bottom: -6rem;
+        }
+        
+    }
+}
+
+    
+   
+
+//////////////////////////////////////
+// Hotel Overview
+
+.overview{
+    display: flex;
+    border-bottom: var(--line);
+    align-items: center;
+
+    //animation purposes
+    background-color: var(--color-grey-light-1);
+    position: relative;
+    z-index: 1000;
+    &__heading{
+        color: var(--color-grey-dark-1);
+        font-size: 2.25rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 1.5rem 3rem;
+
+        @media only screen and (max-width:$bp-small){
+            font-size: 1.8rem;
+            padding: 1.25rem 2rem;
+        }
+
+        @media only screen and (max-width:$bp-micro){
+            font-size: 1.5rem;
+            padding: 1rem 1.3rem;
+        }
+
+    }
+
+    &__stars{
+        margin-right: auto; //aparently this creates a sapce that fill all the void between elements like a targeted justify-content would.
+        display: flex;
+    }
+
+    &__icon-star,
+    &__icon-location{
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: var(--color-primary);
+
+        @media only screen and (max-width:$bp-micro){
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    &__location{
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    &__icon-location{
+        margin-right: .5rem;
+    }
+
+    &__rating{
+        color: #fff;   
+        background-color: var(--color-primary);
+        align-self: stretch; //its center because of the parent alignment, this is a simple override (IMPORTANT TO REMEMBER)
+        padding: 0 2.25rem;
+        margin-left: 3rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @media only screen and (max-width:$bp-small){
+            padding: 0 1.5rem;
+        }
+
+        @media only screen and (max-width:$bp-micro){
+            text-align: center;
+        }
+    }
+
+    &__rating-average{
+        font-size: 2.25rem;
+        font-weight: 300;
+        margin-bottom: -3px;
+
+        @media only screen and (max-width:$bp-small){
+            font-size: 1.8rem;
+        }
+
+        @media only screen and (max-width:$bp-micro){
+            font-size: 1.5rem;
+        }
+    }
+
+    &__rating-count{
+        font-size: .8rem;
+        text-transform: uppercase;
+
+        @media only screen and (max-width:$bp-small){
+            font-size: .5rem;
+        }
+
+        @media only screen and (max-width:$bp-micro){
+            font-size: .4rem;
+        }
+    }
+}

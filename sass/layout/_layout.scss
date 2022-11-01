@@ -1,0 +1,48 @@
+
+//FULL CONTAINER (Header + Content + Cta)
+.container{
+    max-width: 120rem;
+    margin: 8rem auto;
+    background-color: var(--color-grey-light-1);
+    box-shadow: var(--shadow-dark);
+
+    min-height: 50rem;
+
+    @media only screen and (max-width: $bp-largest){
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+//CONTENT (Hotel view + Description + Reviews)
+.content{
+    display: flex;
+
+    @media only screen and (max-width: $bp-medium){
+        flex-direction: column;
+    }
+}
+
+// CALL TO ACTION
+.cta{
+    text-align: center;
+    padding: 3.5rem 0;
+
+    @media only screen and (max-width: $bp-medium){
+        padding: 2.5rem 0;
+    }
+
+    &__book-now{
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+
+        @media only screen and (max-width: $bp-smallest){
+            font-size: 1.2rem;
+        }
+    }
+}
+
+

@@ -1,0 +1,116 @@
+.sidebar{
+    background-color: var(--color-grey-dark-1);
+    flex: 0 0 18%; // dont grow or shrink, occupy only 18%
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.side-nav{
+    font-size: 1.4rem;
+    list-style: none;
+    margin-top: 3rem;
+
+
+    
+    @media only screen and (max-width: $bp-medium){
+        display: flex;
+        margin: 0;
+    }
+
+    &__item{
+        position: relative;
+        &:not(:last-child){
+            margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium){
+                margin: 0;
+            }
+        }
+
+        @media only screen and (max-width: $bp-medium){
+            flex: 1;
+        }
+
+        
+    }
+
+    &__item::before{ //creates a before element, which is the vert line that starts the animation
+        content: "";
+        height: 100%;
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 3px;
+        background-color: var(--color-primary);
+        transform: scaleY(0); //original state nothing happens
+        transition: transform .2s, //coma to sperate different animations for diff properties
+                    width .4s cubic-bezier(1, 0, 0, 1) .2s,
+                    background-color .1s;
+
+        // could use transform-origin:bottom; so the animation starts from the bottom not the middle
+    }
+
+    &__item:hover::before, ///when we hover the item, this happens to the before element
+    &__item--active::before{  //Specific class fore home, creating an identic before for it to stay always on on home
+        transform: scaleY(1); 
+        width: 100%;
+    }
+   
+
+    &__item:active::before{ //when we click the item, this happens to the before element
+        background-color: var(--color-primary-light);
+    }
+
+    &__link:link,
+    &__link:visited {
+        text-decoration: none;
+        display: block;       
+        text-transform: uppercase; 
+        color: var(--color-grey-light-1);
+        padding: 1.5rem 2rem;
+        position: relative; //zindex does not work without position declared
+        z-index: 10;
+        display: flex;
+        align-items: center;
+
+        @media only screen and (max-width: $bp-medium){
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        @media only screen and (max-width:$bp-small){
+            flex-direction: column;
+            padding: 1.5rem .5rem;
+        }
+    }
+
+    &__icon{
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-right: 2rem;
+        fill: currentColor;  //the color of the parent or sibling or itself. And when we change the color of the link when
+                             //hovered, the icon will match it.
+        @media only screen and (max-width:$bp-small){
+        margin-right: 0;
+        margin-bottom: .7rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        }
+        
+    }
+}
+
+//////////////////////////////////////
+// Legal
+.legal{
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--color-grey-light-4);
+
+    @media only screen and (max-width: $bp-medium){
+        display:none
+    }
+}
